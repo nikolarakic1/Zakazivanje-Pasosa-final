@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Zakazivanje termina za pasoše</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    @if (ViewData["SakrijNavigaciju"] == null)
+    {
+        <header class="app-header">
+            <div class="container">
+                <div class="header-top">
+                    <div>
+                        <div class="app-kicker">Službena evidencija</div>
+                        <h1>Zakazivanje termina za pasoše</h1>
+                        <p>Administrativni sistem za obradu zahteva i dokumentacije</p>
+                    </div>
+                </div>
+
+                <nav class="app-nav">
+                    <a asp-controller="ZahtevZaPasos" asp-action="Index">Zahtevi</a>
+                    <a asp-controller="PodnosilacZahteva" asp-action="Index">Podnosioci</a>
+                    <a asp-controller="VrstaDokumenta" asp-action="Index">Vrste dokumenata</a>
+                    <a asp-controller="Dokumentacija" asp-action="Index">Dokumentacija</a>
+                    <a asp-controller="Login" asp-action="Logout">Odjava</a>
+                </nav>
+            </div>
+        </header>
+    }
+
+    <main class="container page-container">
+        @RenderBody()
+    </main>
+
+    @if (ViewData["SakrijNavigaciju"] == null)
+    {
+        <footer class="app-footer">
+            <div class="container">
+                Razvoj višeslojnog softvera · Seminarski rad
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
