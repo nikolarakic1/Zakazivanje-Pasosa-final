@@ -209,24 +209,15 @@ ZakazivanjeTerminaPoslovnaLogika
 
 Pravilo se parametrizuje kroz `appsettings.json`:
 
-```json
-"PoslovnaPravila": {
-  "ZahtevajVazecuLicnuKartu": true,
-  "ZahtevajKompletnuDokumentaciju": true
-}
+ "PoslovnaPravila": {
+   "NaknadaZaHitanPostupak": 3500
+ },
 ```
 
 Logika pravila:
 
 ```text
-Ako se zahteva važeća lična karta, a podnosilac je nema,
-zahtev se odbija.
-
-Ako se zahteva kompletna dokumentacija, a dokumentacija nije kompletna,
-zahtev dobija status "Dopuna dokumentacije".
-
-Ako su uslovi ispunjeni,
-zahtev može biti odobren.
+Ako se zahteva hitan postupak naplacuje se 3500.
 ```
 
 Ovim je ispunjen zahtev da poslovna logika bude parametrizovana i izdvojena u poseban sloj.
