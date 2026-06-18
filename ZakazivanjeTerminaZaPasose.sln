@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37111.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaZaPasose", "ZakazivanjeTerminaZaPasose\ZakazivanjeTerminaZaPasose.csproj", "{C5E24989-122E-48A0-AF4A-6A53D1D66DDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaModeli", "ZakazivanjeTerminaModeli\ZakazivanjeTerminaModeli.csproj", "{0FD3A64D-95BC-4B42-B7E9-5F0AB3B3CEB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaPodaci", "ZakazivanjeTerminaPodaci\ZakazivanjeTerminaPodaci.csproj", "{3CD1D5DB-0F14-4CF9-AB41-B9E5A7BC75EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaPoslovnaLogika", "ZakazivanjeTerminaPoslovnaLogika\ZakazivanjeTerminaPoslovnaLogika.csproj", "{42C2BD57-C9C8-4A08-BDE1-E25CB8266723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaDTO", "ZakazivanjeTerminaDTO\ZakazivanjeTerminaDTO.csproj", "{728FF19E-E3B3-4CF8-8922-8694D2E9A186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZakazivanjeTerminaServisniSloj", "ZakazivanjeTerminaServisniSloj\ZakazivanjeTerminaServisniSloj.csproj", "{CD6D24E8-AB2D-467D-BD2D-D54E61167536}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5E24989-122E-48A0-AF4A-6A53D1D66DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E24989-122E-48A0-AF4A-6A53D1D66DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E24989-122E-48A0-AF4A-6A53D1D66DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E24989-122E-48A0-AF4A-6A53D1D66DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD3A64D-95BC-4B42-B7E9-5F0AB3B3CEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD3A64D-95BC-4B42-B7E9-5F0AB3B3CEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD3A64D-95BC-4B42-B7E9-5F0AB3B3CEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD3A64D-95BC-4B42-B7E9-5F0AB3B3CEB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD1D5DB-0F14-4CF9-AB41-B9E5A7BC75EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD1D5DB-0F14-4CF9-AB41-B9E5A7BC75EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD1D5DB-0F14-4CF9-AB41-B9E5A7BC75EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD1D5DB-0F14-4CF9-AB41-B9E5A7BC75EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C2BD57-C9C8-4A08-BDE1-E25CB8266723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C2BD57-C9C8-4A08-BDE1-E25CB8266723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C2BD57-C9C8-4A08-BDE1-E25CB8266723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C2BD57-C9C8-4A08-BDE1-E25CB8266723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{728FF19E-E3B3-4CF8-8922-8694D2E9A186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{728FF19E-E3B3-4CF8-8922-8694D2E9A186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{728FF19E-E3B3-4CF8-8922-8694D2E9A186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{728FF19E-E3B3-4CF8-8922-8694D2E9A186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6D24E8-AB2D-467D-BD2D-D54E61167536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6D24E8-AB2D-467D-BD2D-D54E61167536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6D24E8-AB2D-467D-BD2D-D54E61167536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6D24E8-AB2D-467D-BD2D-D54E61167536}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C74F3ED-B14A-4A1B-8FA1-E97099BA88D2}
+	EndGlobalSection
+EndGlobal
