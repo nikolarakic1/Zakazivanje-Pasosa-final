@@ -1,0 +1,80 @@
+﻿@model List<ZakazivanjeTerminaDTO.IzmenaDokumentacijeDTO>
+
+@{
+    ViewData["Title"] = "Uređivanje dokumentacije";
+}
+
+<div class="official-card col-lg-10 mx-auto">
+    <div class="mb-4">
+        <h2 class="page-title mb-1">Uređivanje dokumentacije</h2>
+        <p class="text-muted mb-0">
+            Zahtev: <strong>@ViewBag.BrojZahteva</strong>. Označite dokumente koje je podnosilac dostavio.
+        </p>
+    </div>
+
+    <form asp-controller="Dokumentacija" asp-action="UrediZaZahtev" method="post">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Dokument</th>
+                        <th>Obavezno</th>
+                        <th>Dostavljeno</th>
+                        <th>Datum dostavljanja</th>
+                        <th>Napomena</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@Model[i].NazivDokumenta</strong>
+
+                                <input type="hidden" asp-for="@Model[i].Id" />
+                                <input type="hidden" asp-for="@Model[i].ZahtevZaPasosId" />
+                                <input type="hidden" asp-for="@Model[i].VrstaDokumentaId" />
+                                <input type="hidden" asp-for="@Model[i].NazivDokumenta" />
+                                <input type="hidden" asp-for="@Model[i].Obavezno" />
+                            </td>
+
+                            <td>
+                                @if (Model[i].Obavezno)
+                                {
+                                    <span class="status-badge status-rejected">Da</span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge">Ne</span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                <input asp-for="@Model[i].Dostavljeno" class="form-check-input" />
+                            </td>
+
+                            <td>
+                                <input asp-for="@Model[i].DatumDostavljanja" type="date" class="form-control" />
+                            </td>
+
+                            <td>
+                                <input asp-for="@Model[i].Napomena" class="form-control" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                Nazad
+            </a>
+
+            <button type="submit" class="btn btn-primary-official">
+                Sačuvaj dokumentaciju
+            </button>
+        </div>
+    </form>
+</div>
