@@ -36,12 +36,12 @@ ZakazivanjeTerminaZaPasose
 MVC prezentacioni sloj aplikacije.
 Sadrži kontrolere, Razor View stranice, Bootstrap stilizaciju i korisnički interfejs. MVC sloj ne pristupa direktno bazi podataka, već komunicira sa Web API slojem preko HttpClient.
 
-ZakazivanjeTerminaServisniSloj
+## ZakazivanjeTerminaServisniSloj
 
 Web API sloj aplikacije.
 Sadrži API kontrolere koji primaju zahteve iz MVC sloja i pozivaju odgovarajuće servise. Ovaj sloj predstavlja vezu između korisničkog interfejsa i poslovne logike aplikacije.
 
-ZakazivanjeTerminaPodaci
+## ZakazivanjeTerminaPodaci
 
 Sloj pristupa podacima.
 Sadrži AppDbContext, repozitorijume, interfejse repozitorijuma, migracije i pomoćnu klasu DBUtils za ADO.NET pristup bazi.
@@ -51,17 +51,17 @@ ZakazivanjeTerminaModeli
 Sloj domenskih modela.
 Sadrži entitete aplikacije koji predstavljaju tabele u bazi podataka.
 
-ZakazivanjeTerminaDTO
+## ZakazivanjeTerminaDTO
 
 Sloj objekata za prenos podataka.
 DTO klase se koriste za prenos podataka između MVC sloja, Web API sloja i servisnog sloja.
 
-ZakazivanjeTerminaPoslovnaLogika
+## ZakazivanjeTerminaPoslovnaLogika
 
 Sloj poslovne logike.
 Sadrži poslovna pravila, uključujući pravilo za obračun dodatne naknade u slučaju hitnog postupka.
 
-Glavni entiteti
+## Glavni entiteti
 
 Aplikacija koristi sledeće glavne entitete:
 
@@ -72,7 +72,7 @@ Dokumentacija
 VrstaDokumenta
 Funkcionalnosti
 
-Aplikacija omogućava:
+## Aplikacija omogućava:
 
 prijavu korisnika
 evidenciju podnosilaca zahteva
@@ -91,7 +91,7 @@ Poslovno pravilo
 U aplikaciji je implementirano poslovno pravilo za hitan postupak.
 Ako je za zahtev označen hitan postupak, sistem automatski obračunava dodatnu naknadu. Iznos naknade se učitava iz JSON konfiguracije u fajlu appsettings.json.
 
-Primer konfiguracije:
+## Primer konfiguracije:
 
 "PoslovnaPravila": {
   "NaknadaZaHitanPostupak": 3500
@@ -115,7 +115,7 @@ Entity Framework Core je korišćen za rad sa entitetima, repozitorijumima i mig
 
 Pored Entity Framework Core pristupa, u aplikaciji je prikazana i upotreba ADO.NET tehnologije kroz klasu DBUtils, koja se koristi za kreiranje konekcije, komandi i parametara prilikom prijave korisnika.
 
-Repository Pattern
+## Repository Pattern
 
 U sloju podataka koristi se Repository Pattern.
 Svaki važan entitet ima odgovarajući repozitorijum i interfejs repozitorijuma. Na taj način se odvaja logika pristupa podacima od servisnog sloja i ostatka aplikacije.
@@ -152,6 +152,6 @@ ZakazivanjeTerminaZaPasose
 
 MVC aplikacija komunicira sa Web API slojem preko podešenog HttpClient klijenta.
 
-Napomena
+## Napomena
 
 Projekat je izrađen kao seminarski rad i demonstrira primenu višeslojne arhitekture, MVC obrasca, Web API sloja, DTO objekata, Repository Pattern-a, Entity Framework Core-a, ADO.NET pristupa i osnovnih poslovnih pravila.
