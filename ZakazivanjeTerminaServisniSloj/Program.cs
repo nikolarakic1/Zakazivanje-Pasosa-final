@@ -6,6 +6,7 @@ using ZakazivanjeTerminaServisniSloj.Interfejsi;
 using ZakazivanjeTerminaServisniSloj.Servisi;
 using ZakazivanjeTerminaServisniSloj.CuvanjePromena;
 using ZakazivanjeTerminaPoslovnaLogika.Pravila;
+using ZakazivanjeTerminaPodaci.PomocneKlase;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ builder.Services.AddScoped<ILoginServis, LoginServis>();
 // Servisi
 builder.Services.AddScoped<IVrstaDokumentaServis, VrstaDokumentaServis>();
 builder.Services.AddScoped<IPraviloObradeZahteva, PraviloObradeZahteva>();
+builder.Services.AddScoped<DBUtils>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
