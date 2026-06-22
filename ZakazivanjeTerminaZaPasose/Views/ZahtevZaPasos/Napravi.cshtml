@@ -1,0 +1,218 @@
+﻿@model ZakazivanjeTerminaDTO.ZahtevZaPasosDTO
+
+@{
+    ViewData["Title"] = "Novi zahtev za pasoš";
+}
+
+<div class="official-card col-lg-10 mx-auto">
+    <div class="mb-4">
+        <h2 class="page-title mb-1">Novi zahtev za pasoš</h2>
+        <p class="text-muted mb-0">
+            Unos zahteva za izabranog podnosioca i zakazivanje termina za obradu.
+        </p>
+    </div>
+
+    <form asp-controller="ZahtevZaPasos" asp-action="Napravi" method="post" id="formaZahtev">
+        <input type="hidden" asp-for="KorisnikId" />
+        <input type="hidden" asp-for="IznosNaknade" />
+
+        <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+        <div class="section-title">1. Podnosilac zahteva</div>
+
+        <div class="mb-4">
+            <label asp-for="PodnosilacZahtevaId" class="form-label">
+                Lice kome se izrađuje pasoš
+            </label>
+
+            <select asp-for="PodnosilacZahtevaId"
+                    asp-items="ViewBag.Podnosioci"
+                    id="PodnosilacZahtevaId"
+                    class="form-select">
+                <option value="0">-- Izaberite podnosioca zahteva --</option>
+            </select>
+
+            <span asp-validation-for="PodnosilacZahtevaId" class="text-danger"></span>
+
+            <div class="form-text">
+                Izabrani podnosilac predstavlja građanina za kog se podnosi zahtev.
+            </div>
+        </div>
+
+        <div class="section-title">2. Podaci o zahtevu</div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="BrojZahteva" class="form-label">Broj zahteva</label>
+                <input asp-for="BrojZahteva"
+                       id="BrojZahteva"
+                       class="form-control"
+                       placeholder="Na primer: ZP-001" />
+                <span asp-validation-for="BrojZahteva" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="StatusZahteva" class="form-label">Status zahteva</label>
+                <select asp-for="StatusZahteva" class="form-select">
+                    <option>Na čekanju</option>
+                    <option>U obradi</option>
+                    <option>Odobren</option>
+                    <option>Odbijen</option>
+                    <option>Dopuna dokumentacije</option>
+                    <option>Završen</option>
+                </select>
+                <span asp-validation-for="StatusZahteva" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="VrstaPasosa" class="form-label">Vrsta pasoša</label>
+                <select asp-for="VrstaPasosa" class="form-select">
+                    <option>Obični pasoš</option>
+                    <option>Službeni pasoš</option>
+                    <option>Diplomatski pasoš</option>
+                </select>
+                <span asp-validation-for="VrstaPasosa" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="RazlogIzdavanja" class="form-label">Razlog izdavanja</label>
+                <select asp-for="RazlogIzdavanja" class="form-select">
+                    <option>Prvo izdavanje</option>
+                    <option>Obnova</option>
+                    <option>Zamena zbog isteka</option>
+                    <option>Zamena zbog gubitka</option>
+                </select>
+                <span asp-validation-for="RazlogIzdavanja" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="DatumTermina" class="form-label">Datum termina</label>
+                <input asp-for="DatumTermina"
+                       id="DatumTermina"
+                       type="date"
+                       class="form-control" />
+                <span asp-validation-for="DatumTermina" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="VremeTermina" class="form-label">Vreme termina</label>
+                <input asp-for="VremeTermina"
+                       id="VremeTermina"
+                       type="time"
+                       class="form-control" />
+                <span asp-validation-for="VremeTermina" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="MestoPodnosenja" class="form-label">Mesto podnošenja</label>
+                <input asp-for="MestoPodnosenja"
+                       id="MestoPodnosenja"
+                       class="form-control"
+                       placeholder="Zrenjanin" />
+                <span asp-validation-for="MestoPodnosenja" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="RazlogOdbijanja" class="form-label">Razlog odbijanja</label>
+                <input asp-for="RazlogOdbijanja"
+                       class="form-control"
+                       placeholder="Popunjava se samo ako je zahtev odbijen" />
+                <span asp-validation-for="RazlogOdbijanja" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="section-title">3. Provera uslova i naknade</div>
+
+        <div class="condition-box mb-4">
+            <div class="form-check mb-2">
+                <input asp-for="ImaVazecuLicnuKartu" class="form-check-input" />
+                <label asp-for="ImaVazecuLicnuKartu" class="form-check-label">
+                    Podnosilac ima važeću ličnu kartu
+                </label>
+            </div>
+
+            <div class="form-check mb-2">
+                <input asp-for="DokumentacijaKompletna" class="form-check-input" />
+                <label asp-for="DokumentacijaKompletna" class="form-check-label">
+                    Dokumentacija je kompletna
+                </label>
+            </div>
+
+            <div class="form-check mb-2">
+                <input asp-for="HitanPostupak" class="form-check-input" />
+                <label asp-for="HitanPostupak" class="form-check-label">
+                    Hitan postupak
+                </label>
+            </div>
+
+            <div class="form-text">
+                Ako je uključen hitan postupak, sistem automatski obračunava dodatnu naknadu iz JSON konfiguracije.
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Napomena" class="form-label">Napomena</label>
+            <textarea asp-for="Napomena"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Unesite dodatnu napomenu ako postoji"></textarea>
+            <span asp-validation-for="Napomena" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-controller="ZahtevZaPasos" asp-action="Indeks" class="btn btn-outline-secondary">
+                Nazad
+            </a>
+
+            <button type="submit" class="btn btn-primary-official">
+                Sačuvaj zahtev
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById("formaZahtev").addEventListener("submit", function (e) {
+            let greske = [];
+
+            let brojZahteva = document.getElementById("BrojZahteva").value.trim();
+            let podnosilacId = document.getElementById("PodnosilacZahtevaId").value;
+            let datumTermina = document.getElementById("DatumTermina").value;
+            let vremeTermina = document.getElementById("VremeTermina").value;
+            let mestoPodnosenja = document.getElementById("MestoPodnosenja").value.trim();
+
+            let sablonBrojaZahteva = /^ZP-[0-9]{3,}$/;
+
+            if (brojZahteva === "") {
+                greske.push("Broj zahteva je obavezan.");
+            }
+            else if (!sablonBrojaZahteva.test(brojZahteva)) {
+                greske.push("Broj zahteva mora biti u formatu ZP-001.");
+            }
+
+            if (podnosilacId === "0") {
+                greske.push("Morate izabrati podnosioca zahteva.");
+            }
+
+            if (datumTermina === "") {
+                greske.push("Datum termina je obavezan.");
+            }
+
+            if (vremeTermina === "") {
+                greske.push("Vreme termina je obavezno.");
+            }
+
+            if (mestoPodnosenja === "") {
+                greske.push("Mesto podnošenja je obavezno.");
+            }
+
+            if (greske.length > 0) {
+                e.preventDefault();
+                alert(greske.join("\n"));
+            }
+        });
+    </script>
+}

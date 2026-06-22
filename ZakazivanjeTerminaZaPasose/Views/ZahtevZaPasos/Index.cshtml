@@ -1,0 +1,160 @@
+﻿@model List<ZakazivanjeTerminaDTO.PrikazZahtevaZaPasosDTO>
+
+@{
+    ViewData["Title"] = "Zahtevi za pasoš";
+}
+
+<div class="official-card">
+    <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+            <h2 class="page-title mb-1">Zahtevi za pasoš</h2>
+            <p class="text-muted mb-0">
+                Pregled, pretraga i obrada podnetih zahteva za izdavanje pasoša.
+            </p>
+        </div>
+
+        <a asp-controller="ZahtevZaPasos" asp-action="Create" class="btn btn-primary-official">
+            + Novi zahtev
+        </a>
+    </div>
+
+    <form method="get" asp-controller="ZahtevZaPasos" asp-action="Index" class="filter-box mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label">Status zahteva</label>
+                <select name="status" class="form-select">
+                    <option value="">Svi statusi</option>
+                    <option value="Na čekanju" selected="@(ViewBag.Status == "Na čekanju")">Na čekanju</option>
+                    <option value="U obradi" selected="@(ViewBag.Status == "U obradi")">U obradi</option>
+                    <option value="Odobren" selected="@(ViewBag.Status == "Odobren")">Odobren</option>
+                    <option value="Odbijen" selected="@(ViewBag.Status == "Odbijen")">Odbijen</option>
+                    <option value="Dopuna dokumentacije" selected="@(ViewBag.Status == "Dopuna dokumentacije")">Dopuna dokumentacije</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">JMBG podnosioca</label>
+                <input name="jmbg"
+                       value="@ViewBag.Jmbg"
+                       class="form-control"
+                       placeholder="Unesite JMBG" />
+            </div>
+
+            <div class="col-md-4 d-flex gap-2">
+                <button class="btn btn-primary-official flex-fill" type="submit">
+                    Pretraži
+                </button>
+
+                <a asp-controller="ZahtevZaPasos" asp-action="Index" class="btn btn-outline-secondary flex-fill">
+                    Resetuj
+                </a>
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="text-muted">
+            Broj zahteva: <strong>@Model.Count</strong>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mb-0">
+            Nema evidentiranih zahteva za zadate kriterijume pretrage.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Broj zahteva</th>
+                        <th>Podnosilac</th>
+                        <th>JMBG</th>
+                        <th>Termin</th>
+                        <th>Status</th>
+                        <th class="text-center" style="width: 260px;">Akcije</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var z in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">
+                                @z.BrojZahteva
+                            </td>
+
+                            <td>
+                                @z.ImePodnosioca @z.PrezimePodnosioca
+                            </td>
+
+                            <td>
+                                @z.JMBG
+                            </td>
+
+                            <td>
+                                @z.DatumTermina.ToString("dd.MM.yyyy.") @z.VremeTermina
+                            </td>
+
+                            <td>
+                                @if (z.StatusZahteva == "Odobren")
+                                {
+                                    <span class="status-badge status-approved">Odobren</span>
+                                }
+                                else if (z.StatusZahteva == "Odbijen")
+                                {
+                                    <span class="status-badge status-rejected">Odbijen</span>
+                                }
+                                else if (z.StatusZahteva == "U obradi")
+                                {
+                                    <span class="status-badge status-processing">U obradi</span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge">@z.StatusZahteva</span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                <a asp-controller="ZahtevZaPasos"
+                                   asp-action="Details"
+                                   asp-route-id="@z.Id"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Detalji
+                                </a>
+
+                                <a asp-controller="ZahtevZaPasos"
+                                   asp-action="Edit"
+                                   asp-route-id="@z.Id"
+                                   class="btn btn-sm btn-outline-warning">
+                                    Obrada
+                                </a>
+
+                                <a asp-controller="ZahtevZaPasos"
+                                   asp-action="Stampa"
+                                   asp-route-id="@z.Id"
+                                   class="btn btn-sm btn-outline-dark">
+                                    Štampa
+                                </a>
+
+                                <form asp-controller="ZahtevZaPasos"
+                                      asp-action="Delete"
+                                      asp-route-id="@z.Id"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Da li želite da obrišete zahtev?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        Obriši
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

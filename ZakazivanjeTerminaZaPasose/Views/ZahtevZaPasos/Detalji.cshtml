@@ -1,0 +1,56 @@
+﻿@model ZakazivanjeTerminaDTO.PrikazZahtevaZaPasosDTO
+
+@{
+    ViewData["Title"] = "Detalji zahteva";
+}
+
+<div class="official-card col-lg-9 mx-auto">
+    <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+            <h2 class="page-title mb-1">Detalji zahteva</h2>
+            <p class="text-muted mb-0">Broj zahteva: <strong>@Model.BrojZahteva</strong></p>
+        </div>
+
+        <span class="status-badge">@Model.StatusZahteva</span>
+    </div>
+
+    <div class="details-grid">
+        <div>
+            <h5>Podnosilac zahteva</h5>
+            <p><strong>Ime i prezime:</strong> @Model.ImePodnosioca @Model.PrezimePodnosioca</p>
+            <p><strong>JMBG:</strong> @Model.JMBG</p>
+        </div>
+
+        <div>
+            <h5>Podaci o zahtevu</h5>
+            <p><strong>Vrsta pasoša:</strong> @Model.VrstaPasosa</p>
+            <p><strong>Razlog izdavanja:</strong> @Model.RazlogIzdavanja</p>
+            <p><strong>Mesto podnošenja:</strong> @Model.MestoPodnosenja</p>
+            <p><strong>Hitan postupak:</strong> @(Model.HitanPostupak ? "Da" : "Ne")</p>
+            <p><strong>Iznos naknade:</strong> @Model.IznosNaknade RSD</p>
+        </div>
+
+        <div>
+            <h5>Termin</h5>
+            <p><strong>Datum:</strong> @Model.DatumTermina.ToString("dd.MM.yyyy.")</p>
+            <p><strong>Vreme:</strong> @Model.VremeTermina</p>
+            <p><strong>Datum podnošenja:</strong> @Model.DatumPodnosenja.ToString("dd.MM.yyyy.")</p>
+        </div>
+
+        <div>
+            <h5>Status i napomene</h5>
+            <p><strong>Status:</strong> @Model.StatusZahteva</p>
+            <p><strong>Napomena:</strong> @(Model.Napomena ?? "Nema napomene.")</p>
+            <p><strong>Razlog odbijanja:</strong> @(Model.RazlogOdbijanja ?? "-")</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="index" class="btn btn-outline-secondary">Nazad</a>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning">Obrada</a>
+            <a asp-action="Stampa" asp-route-id="@Model.Id" class="btn btn-outline-dark">Štampaj</a>
+        </div>
+    </div>
+</div>
