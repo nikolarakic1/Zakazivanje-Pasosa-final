@@ -1,17 +1,15 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Extensions.Configuration;
 using ZakazivanjeTerminaDTO;
 using ZakazivanjeTerminaPodaci.PomocneKlase;
 using ZakazivanjeTerminaServisniSloj.Interfejsi;
 
 namespace ZakazivanjeTerminaServisniSloj.Servisi
 {
-    public class LoginServis : ILoginServis
+    public class LoginServis : DBUtils, ILoginServis
     {
-        private readonly DBUtils _dbUtils;
-
-        public LoginServis(DBUtils dbUtils)
+        public LoginServis(IConfiguration configuration)
+            : base(configuration)
         {
-            _dbUtils = dbUtils;
         }
 
         public async Task<int?> Prijavi(LoginDTO dto)
@@ -19,18 +17,19 @@ namespace ZakazivanjeTerminaServisniSloj.Servisi
             if (dto is null)
                 throw new ArgumentException("Podaci za prijavu ne smeju biti prazni.");
 
-            await using var connection = await _dbUtils.OtvoriKonekciju();
+            await using var connection = await OtvoriKonekciju();
 
             var sql = @"
                 SELECT Id
                 FROM Korisnici
                 WHERE KorisnickoIme = @KorisnickoIme
-                AND LozinkaHash = @Lozinka";
+                AND LozinkaHash = @Lozinka
+                AND Obrisan = 0";
 
-            await using var command = _dbUtils.KreirajKomandu(sql, connection);
+            await using var command = KreirajKomandu(sql, connection);
 
-            _dbUtils.DodajParametar(command, "@KorisnickoIme", dto.KorisnickoIme);
-            _dbUtils.DodajParametar(command, "@Lozinka", dto.Lozinka);
+            DodajParametar(command, "@KorisnickoIme", dto.KorisnickoIme);
+            DodajParametar(command, "@Lozinka", dto.Lozinka);
 
             var rezultat = await command.ExecuteScalarAsync();
 
